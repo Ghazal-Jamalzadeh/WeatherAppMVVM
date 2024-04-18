@@ -1,8 +1,9 @@
-package com.jmzd.ghazal.weatherappmvvm
+package com.jmzd.ghazal.weatherappmvvm.ui
 
 import android.graphics.Color
 import android.os.Bundle
 import android.view.WindowManager
+import com.jmzd.ghazal.weatherappmvvm.R
 import com.jmzd.ghazal.weatherappmvvm.databinding.ActivityMainBinding
 import com.jmzd.ghazal.weatherappmvvm.utils.base.BaseActivity
 import dagger.hilt.android.AndroidEntryPoint
