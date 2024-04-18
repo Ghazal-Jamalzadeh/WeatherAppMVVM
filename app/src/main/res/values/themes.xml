@@ -1,9 +1,19 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Base.Theme.WeatherAppMVVM" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+    <style name="Base.Theme.WeatherAppMVVM" parent="Theme.Material3.DayNight.NoActionBar"/>
+
+    <style name="Theme.WeatherAppMVVM" parent="Base.Theme.WeatherAppMVVM" >
+        <item name="android:windowTranslucentNavigation">true</item>
     </style>
 
-    <style name="Theme.WeatherAppMVVM" parent="Base.Theme.WeatherAppMVVM" />
+    <!--Colored shadow-->
+    <style name="ColoredShadowLight">
+        <item name="android:outlineSpotShadowColor" tools:targetApi="p">@color/cornflowerBlue</item>
+        <item name="android:outlineAmbientShadowColor" tools:targetApi="p">@color/cornflowerBlue</item>
+    </style>
+    <!--Bottom sheet dialog-->
+    <style name="RemoveDialogBackground" parent="Theme.AppCompat.Light.Dialog">
+        <item name="android:windowBackground">@null</item>
+        <item name="android:windowSoftInputMode">adjustResize|stateVisible</item>
+    </style>
 </resources>
