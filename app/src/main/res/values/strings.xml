@@ -1,3 +1,30 @@
 <resources>
     <string name="app_name">WeatherAppMVVM</string>
+    <string name="checkYourNetwork">اینترنت خود را بررسی کنید</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="searchYourCity">شهر موردنظر خود را جستجو کنید</string>
+    <string name="search">جستجو کنید…</string>
+    <string name="select">انتخاب</string>
+    <string name="searchCanNotBeEmpty">جستجو شهر نمیتواند خالی باشد</string>
+    <string name="selectOneCity">شهر مورد نظر خود را انتخاب کنید</string>
+    <string name="selectYourCity">شهر مورد نظر خود را انتخاب کنید</string>
+    <string name="notFoundAnyCity">هیچ شهری به برنامه اضافه نشده است</string>
+    <string name="degreeCelsius">&#xb0;C</string>
+    <string name="degree">&#xb0;</string>
+    <string name="showAllData">نمایش همه اطلاعات</string>
+    <string name="feelingTemp">مطبوع ترین درجه هوا</string>
+    <string name="pressure">رطوبت هوا</string>
+    <string name="windSpeed">سرعت وزش باد</string>
+    <string name="messageAQI1">بیرون رفتن هیچ خطری نداره، میتونی ازش لذت ببری</string>
+    <string name="messageAQI2">کودکان و بزرگسالان شاغل و افراد مبتلا به بیماری های تنفسی، مانند آسم، باید فعالیت طولانی مدت در فضای باز را محدود کنند</string>
+    <string name="messageAQI3_4">کودکان و بزرگسالان شاغل و افراد مبتلا به بیماری های تنفسی مانند آسم باید از کار طولانی مدت در فضای باز جلوگیری کنند؛ هر کس دیگر، به ویژه کودکان، باید فعالیت طولانی مدت در فضای باز را محدود کند</string>
+    <string name="messageAQI5">همه باید از هرگونه فعالیت در فضای باز خودداری کنند</string>
+    <string name="co">کربن منوکسید</string>
+    <string name="pm2_5">ذرات معلق PM2.5</string>
+    <string name="pm10">ذرات معلق PM10</string>
+    <string name="o3">ازون</string>
+    <string name="no2">دی اکسید نیتروژن</string>
+    <string name="so2">دی اکسید گوگرد</string>
+    <string name="km_s">km/s</string>
 </resources>
