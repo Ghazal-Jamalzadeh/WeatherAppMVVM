@@ -1,6 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/nav_main">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_main"
+    app:startDestination="@id/mainFragment">
 
+    <!-- Main -->
+    <fragment
+        android:id="@+id/mainFragment"
+        android:name="com.jmzd.ghazal.weatherappmvvm.ui.main.MainFragment"
+        android:label="fragment_main"
+        tools:layout="@layout/fragment_main" >
+    </fragment>
+
+    <!-- Add City -->
+    <action
+        android:id="@+id/action_to_addCityFragment"
+        app:destination="@id/addCityFragment" />
+    <dialog
+        android:id="@+id/addCityFragment"
+        android:name="com.jmzd.ghazal.weatherappmvvm.ui.add_city.AddCityFragment"
+        android:label="fragment_add_city"
+        tools:layout="@layout/fragment_add_city" />
 </navigation>

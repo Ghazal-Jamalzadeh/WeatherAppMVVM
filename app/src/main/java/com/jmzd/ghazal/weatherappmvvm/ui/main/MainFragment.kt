@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.jmzd.ghazal.weatherappmvvm.R
 import com.jmzd.ghazal.weatherappmvvm.databinding.FragmentMainBinding
 import com.jmzd.ghazal.weatherappmvvm.utils.base.BaseFragment
@@ -47,8 +48,8 @@ class MainFragment : BaseFragment<FragmentMainBinding>() {
 //                    viewModel.callCurrentWeatherApi(it[0].lat!!, it[0].lon!!)
 //                    viewModel.callForecastApi(it[0].lat!!, it[0].lon!!)
                 } else {
-//                    emptyLay.isVisible = true
-//                    findNavController().navigate(R.id.actionToAddCity)
+                    emptyLay.isVisible = true
+                    findNavController().navigate(R.id.action_to_addCityFragment)
                 }
             }
         }
