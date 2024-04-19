@@ -1,0 +1,42 @@
+برای آپدیت کردن اکتیویتی وقتی باتم شیت انتخاب شهر بسته میشه
+از ساز و کار ایونت باسی که خودمون نوشتیم استفاده میکنیم
+که توی پروژه های قبلی هم استفاده کرده بودیم
+
+
+
+توی پروژه فروشگاهی صرفا یک ایونت ساده فلگ طور رو هندل میکردیم با این ساز و کار
+یعنی یک بولین رو چک میکردیم
+اینجا میخوایم یک دیتایی رو هم انتقال بدیم
+پس توی پروژه فروشگاهی میومدیم آبجکت میساختیم این ایونت ها رو
+چون دیتایی قرار نبود توش ذخیره شه
+نیازی به کانستراکتور هم نداشتیم
+ولی اینجا دیتا کلاس میساریم
+class Events {
+    data class OnUpdateWeather(val name: String?, val lat: Double?, val lon: Double?)
+}
+
+چرا آبجکت میسازیم و نه کلاس؟
+چون کانستراکتور نیاز نداریم
+object EventBus {
+    private val events = MutableSharedFlow<Any>()
+    val usableEvent = events.asSharedFlow()
+
+    suspend fun publish(event: Any) {
+        events.emit(event)
+    }
+
+    suspend inline fun <reified T> subscribe(crossinline onEvents: (T) -> Unit) {
+        usableEvent.filterIsInstance<T>().collectLatest {
+            coroutineContext.ensureActive()
+            onEvents(it)
+        }
+    }
+}
+
+fragment----------------
+            lifecycleScope.launch {
+                EventBus.publish(Events.OnUpdateWeather(cityEntity.name, it.lat, it.lon))
+            }
+
+توضیحات بیشتر
+https://github.com/Ghazal-Jamalzadeh/StoreAppMVVM/blob/master/app/src/main/java/com/jmzd/ghazal/storeappmvvm/Notes/Note-EventBus
