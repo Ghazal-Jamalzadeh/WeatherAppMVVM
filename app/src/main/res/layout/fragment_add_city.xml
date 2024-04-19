@@ -1,14 +1,71 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/bg_top_rounded_white"
+    android:paddingHorizontal="@dimen/_15mdp"
+    android:paddingVertical="@dimen/_20mdp"
     tools:context=".ui.add_city.AddCityFragment">
-
-    <!-- TODO: Update blank fragment layout -->
+    <!--Title-->
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:id="@+id/titleTxt"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/searchYourCity"
+        android:textColor="@color/black"
+        android:textSize="@dimen/_12font_mdp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+    <!--Search-->
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/searchInpLay"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_15mdp"
+        android:background="@drawable/bg_rounded_white"
+        android:padding="@dimen/_5mdp"
+        app:endIconDrawable="@drawable/magnifying_glass"
+        app:endIconMode="custom"
+        app:endIconTint="@color/gainsBoro"
+        app:hintEnabled="false"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/titleTxt">
 
-</FrameLayout>
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/searchEdt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:hint="@string/search"
+            android:singleLine="true"
+            android:textSize="@dimen/_12font_mdp"
+            android:textColorHint="@color/gainsBoro" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+    <!--List-->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/citiesList"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_5mdp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/searchInpLay"
+        tools:itemCount="5"
+        tools:listitem="@layout/item_cities" />
+    <!--Loading-->
+    <ProgressBar
+        android:id="@+id/loading"
+        android:layout_width="@dimen/_20mdp"
+        android:layout_height="@dimen/_20mdp"
+        android:visibility="gone"
+        android:layout_marginTop="@dimen/_10mdp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/searchInpLay" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="@dimen/_5mdp"
+    android:background="@drawable/bg_rounded_white"
+    android:paddingHorizontal="@dimen/_15mdp"
+    android:paddingVertical="@dimen/_10mdp">
+
+    <ImageView
+        android:id="@+id/trashImg"
+        android:layout_width="@dimen/_25mdp"
+        android:layout_height="@dimen/_25mdp"
+        android:layout_marginStart="@dimen/mines5mdp"
+        android:padding="@dimen/_4mdp"
+        android:src="@drawable/trash_can"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:tint="@color/red" />
+
+    <TextView
+        android:id="@+id/citiesNameTxt"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="right"
+        android:maxLines="1"
+        android:textColor="@color/black"
+        android:textSize="@dimen/_12font_mdp"
+        app:fontPath="fonts/iransans_bold.ttf"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/trashImg"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
