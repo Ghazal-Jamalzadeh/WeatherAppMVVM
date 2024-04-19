@@ -8,6 +8,6 @@ import retrofit2.http.Query
 interface ApiServices {
 
     @GET("geo/1.0/direct")
-    suspend fun searchCities(@Query("q") q: String, @Query("limit") limit: Int): Response<ResponseCitiesList>
+    suspend fun searchCitiesList(@Query("q") q: String, @Query("limit") limit: Int): Response<ResponseCitiesList>
 
 }
