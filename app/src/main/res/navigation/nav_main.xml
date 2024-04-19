@@ -22,4 +22,14 @@
         android:name="com.jmzd.ghazal.weatherappmvvm.ui.add_city.AddCityFragment"
         android:label="fragment_add_city"
         tools:layout="@layout/fragment_add_city" />
+
+    <!-- My Cities List -->
+    <action
+        android:id="@+id/action_to_CitiesFragment"
+        app:destination="@id/citiesFragment" />
+    <dialog
+        android:id="@+id/citiesFragment"
+        android:name="com.jmzd.ghazal.weatherappmvvm.ui.cities.CitiesFragment"
+        android:label="fragment_cities"
+        tools:layout="@layout/fragment_cities" />
 </navigation>

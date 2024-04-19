@@ -48,6 +48,12 @@ class MainFragment : BaseFragment<FragmentMainBinding>() {
 //                viewModel.callForecastApi(it.lat, it.lon)
             }
         }
+
+        //InitViews
+        binding.apply {
+            menuImg.setOnClickListener { findNavController().navigate(R.id.action_to_CitiesFragment) }
+            addImg.setOnClickListener { findNavController().navigate(R.id.action_to_addCityFragment) }
+        }
     }
 
     private fun loadCitiesData() {
