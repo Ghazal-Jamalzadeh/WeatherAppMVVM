@@ -1,13 +1,15 @@
 package com.jmzd.ghazal.weatherappmvvm.ui.add_city
 
-import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import com.jmzd.ghazal.weatherappmvvm.R
+import com.jmzd.ghazal.weatherappmvvm.databinding.FragmentAddCityBinding
+import com.jmzd.ghazal.weatherappmvvm.utils.base.BaseBottomSheetFragment
+import dagger.hilt.android.AndroidEntryPoint
 
-class AddCityFragment : Fragment() {
+@AndroidEntryPoint
+class AddCityFragment : BaseBottomSheetFragment<FragmentAddCityBinding>(){
+
+    override val bindingInflater: (inflater: LayoutInflater) -> FragmentAddCityBinding
+        get() = FragmentAddCityBinding::inflate
 
 
 }
