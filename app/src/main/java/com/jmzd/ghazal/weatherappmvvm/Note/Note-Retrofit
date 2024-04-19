@@ -1,0 +1,19 @@
+توی api هایی که از این سایت صدا میزنیم توی کوعری همه شون باید appId رو بفرسیتم
+ما قبلا یاد گرفتیم چطور باید روی همه ریکوعست ها یک هدر خاص رو ست کنیم
+حالا یاد میگیریم چطور روی همه ریکوعست ها باید بادی رو ست کنیم
+
+برای این کار طبق معمول میام از اینترسپتور ها استفاده میکنیم
+درصد زیادی از کدهاش مثل هدر هست ولی فرق داره
+میایم یوآرال ریکوعست فعلی رو میگیریم
+addQueryParameter : برای اضافه کردن کوعری پارامتر
+کوعری مد نظرمون رو بهش اضافه میکنیم
+بعد یک ریکوعست جدید میسازیم و این کوعری های جدید رو با قبلیا میدبم بهش
+ریکوعست رو میفرستیم که بره
+
+        .addInterceptor { chain ->
+            val url = chain.request().url.newBuilder().addQueryParameter(APPID, API_KEY).build()
+            val request = chain.request().newBuilder().url(url).build()
+            chain.proceed(request)
+        }.also { client ->
+            client.addInterceptor(interceptor)
+        }

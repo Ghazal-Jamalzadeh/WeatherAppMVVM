@@ -3,6 +3,7 @@ package com.jmzd.ghazal.weatherappmvvm.utils.di
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import com.jmzd.ghazal.weatherappmvvm.data.network.ApiServices
+import com.jmzd.ghazal.weatherappmvvm.utils.API_KEY
 import com.jmzd.ghazal.weatherappmvvm.utils.APPID
 import com.jmzd.ghazal.weatherappmvvm.utils.BASE_URL
 import com.jmzd.ghazal.weatherappmvvm.utils.CONNECTION_TIME
@@ -12,6 +13,7 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
+import com.jmzd.ghazal.weatherappmvvm.BuildConfig
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -43,15 +45,15 @@ object NetworkModule {
     @Provides
     @Singleton
     fun provideClient(
-        timeout: Long, @Named(NAMED_PING) ping: Long
+        timeout: Long, @Named(NAMED_PING) ping: Long , interceptor : HttpLoggingInterceptor
     ) = OkHttpClient.Builder()
-//        .addInterceptor { chain ->
-//            val url = chain.request().url.newBuilder().addQueryParameter(APPID, API_KEY).build()
-//            val request = chain.request().newBuilder().url(url).build()
-//            chain.proceed(request)
-//        }.also { client ->
-//            client.addInterceptor(interceptor)
-//        }
+        .addInterceptor { chain ->
+            val url = chain.request().url.newBuilder().addQueryParameter(APPID, API_KEY).build()
+            val request = chain.request().newBuilder().url(url).build()
+            chain.proceed(request)
+        }.also { client ->
+            client.addInterceptor(interceptor)
+        }
         .writeTimeout(timeout, TimeUnit.SECONDS)
         .readTimeout(timeout, TimeUnit.SECONDS)
         .connectTimeout(timeout, TimeUnit.SECONDS)
@@ -59,11 +61,11 @@ object NetworkModule {
         .pingInterval(ping, TimeUnit.SECONDS)
         .build()
 
-//    @Provides
-//    @Singleton
-//    fun provideInterceptor() = HttpLoggingInterceptor().apply {
-//        level = if (BuildConfig.DEBUG) HttpLoggingInterceptor.Level.BODY else HttpLoggingInterceptor.Level.NONE
-//    }
+    @Provides
+    @Singleton
+    fun provideInterceptor() = HttpLoggingInterceptor().apply {
+        level = if (BuildConfig.DEBUG) HttpLoggingInterceptor.Level.BODY else HttpLoggingInterceptor.Level.NONE
+    }
 
     @Provides
     @Singleton
