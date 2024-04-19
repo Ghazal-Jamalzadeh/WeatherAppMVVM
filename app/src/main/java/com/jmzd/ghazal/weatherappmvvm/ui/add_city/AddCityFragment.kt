@@ -5,14 +5,18 @@ import android.view.LayoutInflater
 import android.view.View
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.jmzd.ghazal.weatherappmvvm.R
+import com.jmzd.ghazal.weatherappmvvm.data.database.CitiesEntity
+import com.jmzd.ghazal.weatherappmvvm.data.model.add_city.ResponseCitiesList.ResponseCitiesListItem
 import com.jmzd.ghazal.weatherappmvvm.databinding.FragmentAddCityBinding
 import com.jmzd.ghazal.weatherappmvvm.utils.base.BaseBottomSheetFragment
 import com.jmzd.ghazal.weatherappmvvm.utils.network.NetworkRequest
+import com.jmzd.ghazal.weatherappmvvm.utils.setupRecyclerview
 import com.jmzd.ghazal.weatherappmvvm.utils.showSnackBar
 import com.jmzd.ghazal.weatherappmvvm.viewmodel.AddCityViewModel
-import com.jmzd.ghazal.weatherappmvvm.viewmodel.MainViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class AddCityFragment : BaseBottomSheetFragment<FragmentAddCityBinding>(){
@@ -23,6 +27,14 @@ class AddCityFragment : BaseBottomSheetFragment<FragmentAddCityBinding>(){
 
     //viewModel
     private val viewModel by viewModels<AddCityViewModel>()
+
+    //adapter
+    @Inject
+    lateinit var citiesAdapter : CitiesAdapter
+
+    //other
+    @Inject
+    lateinit var cityEntity : CitiesEntity
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -70,7 +82,27 @@ class AddCityFragment : BaseBottomSheetFragment<FragmentAddCityBinding>(){
         }
     }
 
-
-
+    private fun initRecyclerView(list: List<ResponseCitiesListItem>) {
+        citiesAdapter.setData(list)
+        binding.citiesList.setupRecyclerview(LinearLayoutManager(requireContext()), citiesAdapter)
+        //Click
+        citiesAdapter.setOnItemClickListener {
+            //Set data into entity
+//            cityEntity.lat = it.lat
+//            cityEntity.lon = it.lon
+//            if (it.localNames?.fa != null)
+//                cityEntity.name = it.localNames.fa
+//            else
+//                cityEntity.name = it.name
+            //Save city
+//            viewModel.saveCity(cityEntity)
+            //Update event
+//            lifecycleScope.launch {
+//                EventBus.publish(Events.OnUpdateWeather(cityEntity.name, it.lat, it.lon))
+//            }
+            //Close dialog
+//            this@AddCityFragment.dismiss()
+        }
+    }
 
 }
