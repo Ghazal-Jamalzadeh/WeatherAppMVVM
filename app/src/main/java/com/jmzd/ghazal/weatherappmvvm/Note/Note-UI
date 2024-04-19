@@ -8,3 +8,13 @@ Bottom sheets Background--------------------------------------------------------
         val window = dialog!!.window
         window!!.setBackgroundDrawableResource(R.color.backShadow)
     }
+
+Group vs ConstraintLayout --------------------------------------------------------------------------
+برای visible invisible کردن یه تعداد ویو گروپ خیلی سبک تر و بهینه تر هست
+توی فرگمنت سیتیز استفاده شده توی این پروژه
+    <androidx.constraintlayout.widget.Group
+        android:id="@+id/containerGroup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="visible"
+        app:constraint_referenced_ids="titleTxt,citiesList" />
