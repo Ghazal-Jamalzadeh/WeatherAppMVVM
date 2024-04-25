@@ -10,9 +10,11 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
 import coil.load
 import com.github.matteobattilana.weather.PrecipType
 import com.jmzd.ghazal.weatherappmvvm.R
+import com.jmzd.ghazal.weatherappmvvm.data.model.main.ResponseForecast
 import com.jmzd.ghazal.weatherappmvvm.databinding.FragmentMainBinding
 import com.jmzd.ghazal.weatherappmvvm.utils.base.BaseFragment
 import com.jmzd.ghazal.weatherappmvvm.utils.changeVisibility
@@ -21,11 +23,13 @@ import com.jmzd.ghazal.weatherappmvvm.utils.events.Events
 import com.jmzd.ghazal.weatherappmvvm.utils.network.NetworkRequest
 import com.jmzd.ghazal.weatherappmvvm.utils.onceObserve
 import com.jmzd.ghazal.weatherappmvvm.utils.setStatusBarIconsColor
+import com.jmzd.ghazal.weatherappmvvm.utils.setupRecyclerview
 import com.jmzd.ghazal.weatherappmvvm.utils.showSnackBar
 import com.jmzd.ghazal.weatherappmvvm.viewmodel.MainViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import java.util.Calendar
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class MainFragment : BaseFragment<FragmentMainBinding>() {
@@ -37,6 +41,11 @@ class MainFragment : BaseFragment<FragmentMainBinding>() {
     //viewModel
     private val viewModel by viewModels<MainViewModel>()
 
+    //adapter
+    @Inject
+    lateinit var forecastAdapter: ForecastAdapter
+
+    //other
     private val calendar by lazy { Calendar.getInstance() }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -147,8 +156,8 @@ class MainFragment : BaseFragment<FragmentMainBinding>() {
 
                     is NetworkRequest.Success -> {
                         response.data?.let { data ->
-//                            if (data.list.isNotEmpty())
-//                                initRecyclerView(data.list)
+                            if (data.list.isNotEmpty())
+                                initRecyclerView(data.list)
                         }
                     }
 
@@ -208,6 +217,11 @@ class MainFragment : BaseFragment<FragmentMainBinding>() {
     }
 
 
-
+    private fun initRecyclerView(cities: List<ResponseForecast.Data>) {
+        forecastAdapter.setData(cities)
+        binding.forecastList.setupRecyclerview(
+            LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, true), forecastAdapter
+        )
+    }
 
 }
