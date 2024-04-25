@@ -12,5 +12,6 @@ class MainRepository @Inject constructor(private val dao: CitiesDao , private va
 
     //Api
     suspend fun getCurrentWeather(lat: Double, lon: Double) = api.getCurrentWeather(lat, lon, FA, METRIC)
+    suspend fun getForecast(lat: Double, lon: Double) = api.getForecast(lat, lon, FA, METRIC)
 
 }
