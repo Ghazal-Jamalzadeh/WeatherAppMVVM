@@ -32,4 +32,20 @@
         android:name="com.jmzd.ghazal.weatherappmvvm.ui.cities.CitiesFragment"
         android:label="fragment_cities"
         tools:layout="@layout/fragment_cities" />
+
+    <!-- info -->
+    <action
+        android:id="@+id/action_to_infoFragment"
+        app:destination="@id/infoFragment" />
+    <dialog
+        android:id="@+id/infoFragment"
+        android:name="com.jmzd.ghazal.weatherappmvvm.ui.info.InfoFragment"
+        android:label="fragment_info"
+        tools:layout="@layout/fragment_info" >
+        <argument
+            android:name="data"
+            app:argType="com.jmzd.ghazal.weatherappmvvm.data.model.main.ResponseCurrentWeather" />
+    </dialog>
+
+
 </navigation>

@@ -108,8 +108,8 @@ class MainFragment : BaseFragment<FragmentMainBinding>() {
                         response.data?.let { data ->
                             //Info fragment
                             showAllTxt.setOnClickListener {
-//                                val direction = MainFragmentDirections.actionToInfo(data)
-//                                findNavController().navigate(direction)
+                                val direction = MainFragmentDirections.actionToInfoFragment(data)
+                                findNavController().navigate(direction)
                             }
                             //Name
                             cityName.text = data.name

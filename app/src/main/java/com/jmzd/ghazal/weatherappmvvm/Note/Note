@@ -2,3 +2,12 @@ TimeStamp-----------------------------------------------------------------------
 سرویس پیش بینی تاریخ رو به صورت تایم استمپ هم برای ما میفرسته که ما ازش استفاده نمیکنیم
 و از اون یکی فرمت تاریخش استفاده میکنیم
 اکستنشن نوشتیم براش
+
+Send Custom model as bundle to fragment-------------------------------------------------------------
+ResponseCurrentWeather
+
+1- extend from Parcelable (android.os)
+
+2- add @Parcelize annotation (kotlin x)
+
+3- add @RawValue annotation before custom data types and lists
