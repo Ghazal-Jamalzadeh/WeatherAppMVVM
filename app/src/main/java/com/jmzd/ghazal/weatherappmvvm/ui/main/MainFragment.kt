@@ -10,6 +10,8 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import coil.load
+import com.github.matteobattilana.weather.PrecipType
 import com.jmzd.ghazal.weatherappmvvm.R
 import com.jmzd.ghazal.weatherappmvvm.databinding.FragmentMainBinding
 import com.jmzd.ghazal.weatherappmvvm.utils.base.BaseFragment
@@ -108,13 +110,13 @@ class MainFragment : BaseFragment<FragmentMainBinding>() {
                                         //Info
                                         infoTxt.text = it.description
                                         //Bg
-//                                        bgImg.load(
-//                                            if (isNightNow()) R.drawable.bg_night
-//                                            else it.icon?.let { icon -> setDynamicallyWallpaper(icon) }
-//                                        ) {
-//                                            crossfade(true)
-//                                            crossfade(100)
-//                                        }
+                                        bgImg.load(
+                                            if (isNightNow()) R.drawable.bg_night
+                                            else it.icon?.let { icon -> setDynamicallyWallpaper(icon) }
+                                        ) {
+                                            crossfade(true)
+                                            crossfade(100)
+                                        }
                                     }
                                 }
                             }
@@ -141,6 +143,46 @@ class MainFragment : BaseFragment<FragmentMainBinding>() {
         // HOUR_OF_DAY -> 24 h
         //HOUR -> 12 h
         return calendar.get(Calendar.HOUR_OF_DAY) >= 18
+    }
+
+
+    private fun setDynamicallyWallpaper(icon: String): Int {
+        return when (icon.dropLast(1)) {
+            "01" -> {
+                initWeatherView(PrecipType.CLEAR)
+                R.drawable.bg_sun
+            }
+
+            "02", "03", "04" -> {
+                initWeatherView(PrecipType.CLEAR)
+                R.drawable.bg_cloud
+            }
+
+            "09", "10", "11" -> {
+                initWeatherView(PrecipType.RAIN)
+                R.drawable.bg_rain
+            }
+
+            "13" -> {
+                initWeatherView(PrecipType.SNOW)
+                R.drawable.bg_snow
+            }
+
+            "50" -> {
+                initWeatherView(PrecipType.CLEAR)
+                R.drawable.bg_haze
+            }
+
+            else -> 0
+        }
+    }
+
+    private fun initWeatherView(type: PrecipType) {
+        binding.weatherView.apply {
+            setWeatherData(type)
+            angle = 20
+            emissionRate = 100.0f
+        }
     }
 
 

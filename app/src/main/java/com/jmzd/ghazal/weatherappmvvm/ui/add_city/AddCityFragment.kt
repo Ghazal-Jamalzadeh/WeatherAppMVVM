@@ -72,7 +72,7 @@ class AddCityFragment : BaseBottomSheetFragment<FragmentAddCityBinding>(){
                         loading.isVisible = false
                         response.data?.let { data ->
                             if (data.isNotEmpty()) {
-//                                initRecyclerView(data)
+                                initRecyclerView(data)
                             }
                         }
                     }
