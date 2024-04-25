@@ -147,7 +147,7 @@ class MainFragment : BaseFragment<FragmentMainBinding>() {
 
                     is NetworkRequest.Success -> {
                         response.data?.let { data ->
-                            if (data.list.isNotEmpty())
+//                            if (data.list.isNotEmpty())
 //                                initRecyclerView(data.list)
                         }
                     }
