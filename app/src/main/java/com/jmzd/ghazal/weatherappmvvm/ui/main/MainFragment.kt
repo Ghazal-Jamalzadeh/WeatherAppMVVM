@@ -50,6 +50,7 @@ class MainFragment : BaseFragment<FragmentMainBinding>() {
         //observers
         loadCitiesData()
         loadCurrentWeatherData()
+        loadForecastData()
 
         //Event
         lifecycleScope.launch {
@@ -138,6 +139,27 @@ class MainFragment : BaseFragment<FragmentMainBinding>() {
         }
     }
 
+    private fun loadForecastData() {
+        binding.apply {
+            viewModel.forecastLiveData.observe(viewLifecycleOwner) { response ->
+                when (response) {
+                    is NetworkRequest.Loading -> {}
+
+                    is NetworkRequest.Success -> {
+                        response.data?.let { data ->
+                            if (data.list.isNotEmpty())
+//                                initRecyclerView(data.list)
+                        }
+                    }
+
+                    is NetworkRequest.Error -> {
+                        root.showSnackBar(response.error!!)
+                    }
+                }
+            }
+        }
+    }
+
 
     private fun isNightNow(): Boolean {
         // HOUR_OF_DAY -> 24 h
@@ -184,6 +206,8 @@ class MainFragment : BaseFragment<FragmentMainBinding>() {
             emissionRate = 100.0f
         }
     }
+
+
 
 
 }
