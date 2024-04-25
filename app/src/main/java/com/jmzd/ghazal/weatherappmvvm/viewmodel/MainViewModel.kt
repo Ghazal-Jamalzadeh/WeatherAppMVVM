@@ -7,6 +7,7 @@ import androidx.lifecycle.viewModelScope
 import com.jmzd.ghazal.weatherappmvvm.data.database.CitiesEntity
 import com.jmzd.ghazal.weatherappmvvm.data.model.add_city.ResponseCitiesList
 import com.jmzd.ghazal.weatherappmvvm.data.model.main.ResponseCurrentWeather
+import com.jmzd.ghazal.weatherappmvvm.data.model.main.ResponseForecast
 import com.jmzd.ghazal.weatherappmvvm.data.repository.MainRepository
 import com.jmzd.ghazal.weatherappmvvm.utils.network.NetworkRequest
 import com.jmzd.ghazal.weatherappmvvm.utils.network.NetworkResponse
@@ -25,11 +26,21 @@ class MainViewModel @Inject constructor(private val repository: MainRepository) 
     private val _currentWeatherLiveData = MutableLiveData<NetworkRequest<ResponseCurrentWeather>>()
     val currentWeatherLiveData: LiveData<NetworkRequest<ResponseCurrentWeather>> = _currentWeatherLiveData
 
+    //forecast
+    private val _forecastLiveData = MutableLiveData<NetworkRequest<ResponseForecast>>()
+    val forecastLiveData: LiveData<NetworkRequest<ResponseForecast>> = _forecastLiveData
+
     //--- api call ---//,
     fun getCurrentWeather(lat: Double, lon: Double) = viewModelScope.launch {
         _currentWeatherLiveData.value = NetworkRequest.Loading()
         val response = repository.getCurrentWeather(lat , lon)
         _currentWeatherLiveData.value = NetworkResponse(response).generateResponse()
+    }
+
+    fun getForecast(lat: Double, lon: Double) = viewModelScope.launch {
+        _forecastLiveData.value = NetworkRequest.Loading()
+        val response = repository.getForecast(lat , lon)
+        _forecastLiveData.value = NetworkResponse(response).generateResponse()
     }
 
     //--- data base ---//
