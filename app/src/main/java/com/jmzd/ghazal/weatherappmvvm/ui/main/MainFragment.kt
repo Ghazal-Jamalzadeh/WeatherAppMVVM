@@ -55,7 +55,7 @@ class MainFragment : BaseFragment<FragmentMainBinding>() {
         lifecycleScope.launch {
             EventBus.subscribe<Events.OnUpdateWeather> {
                 viewModel.getCurrentWeather(it.lat!!, it.lon!!)
-//                viewModel.callForecastApi(it.lat, it.lon)
+                viewModel.getForecast(it.lat, it.lon)
             }
         }
 
@@ -74,7 +74,7 @@ class MainFragment : BaseFragment<FragmentMainBinding>() {
                     emptyLay.isVisible = false
 //                    //Call api
                     viewModel.getCurrentWeather(it[0].lat!!, it[0].lon!!)
-//                    viewModel.callForecastApi(it[0].lat!!, it[0].lon!!)
+                    viewModel.getForecast(it[0].lat!!, it[0].lon!!)
                 } else {
                     emptyLay.isVisible = true
                     findNavController().navigate(R.id.action_to_addCityFragment)
