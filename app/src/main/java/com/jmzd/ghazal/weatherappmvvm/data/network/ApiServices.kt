@@ -1,6 +1,7 @@
 package com.jmzd.ghazal.weatherappmvvm.data.network
 
 import com.jmzd.ghazal.weatherappmvvm.data.model.add_city.ResponseCitiesList
+import com.jmzd.ghazal.weatherappmvvm.data.model.info.ResponsePollution
 import com.jmzd.ghazal.weatherappmvvm.data.model.main.ResponseCurrentWeather
 import com.jmzd.ghazal.weatherappmvvm.data.model.main.ResponseForecast
 import retrofit2.Response
@@ -21,4 +22,7 @@ interface ApiServices {
     suspend fun getForecast(
         @Query("lat") lat: Double, @Query("lon") lon: Double, @Query("lang") lang: String, @Query("units") units: String,
     ): Response<ResponseForecast>
+
+    @GET("data/2.5/air_pollution")
+    suspend fun getPollution(@Query("lat") lat: Double, @Query("lon") lon: Double): Response<ResponsePollution>
 }
