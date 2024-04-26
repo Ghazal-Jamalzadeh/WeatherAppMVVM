@@ -10,6 +10,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.navArgs
 import com.jmzd.ghazal.weatherappmvvm.R
+import com.jmzd.ghazal.weatherappmvvm.data.model.info.PollutionModel
 import com.jmzd.ghazal.weatherappmvvm.data.model.info.ResponsePollution
 import com.jmzd.ghazal.weatherappmvvm.databinding.FragmentInfoBinding
 import com.jmzd.ghazal.weatherappmvvm.utils.BASE_URL_IMAGE
@@ -177,7 +178,16 @@ class InfoFragment : BaseBottomSheetFragment<FragmentInfoBinding>() {
         }
     }
 
-
+    private fun fillPollutionData(data: ResponsePollution.Data.Components): MutableList<PollutionModel> {
+        val list = mutableListOf<PollutionModel>()
+        list.add(PollutionModel(getString(R.string.co), data.co))
+        list.add(PollutionModel(getString(R.string.no2), data.no2))
+        list.add(PollutionModel(getString(R.string.o3), data.o3))
+        list.add(PollutionModel(getString(R.string.so2), data.so2))
+        list.add(PollutionModel(getString(R.string.pm2_5), data.pm25))
+        list.add(PollutionModel(getString(R.string.pm10), data.pm10))
+        return list
+    }
 
 
 }
