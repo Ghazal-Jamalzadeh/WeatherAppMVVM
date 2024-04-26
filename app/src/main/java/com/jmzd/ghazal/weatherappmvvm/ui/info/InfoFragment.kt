@@ -9,6 +9,7 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.navArgs
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.jmzd.ghazal.weatherappmvvm.R
 import com.jmzd.ghazal.weatherappmvvm.data.model.info.PollutionModel
 import com.jmzd.ghazal.weatherappmvvm.data.model.info.ResponsePollution
@@ -19,11 +20,13 @@ import com.jmzd.ghazal.weatherappmvvm.utils.base.BaseBottomSheetFragment
 import com.jmzd.ghazal.weatherappmvvm.utils.changeVisibility
 import com.jmzd.ghazal.weatherappmvvm.utils.loadImage
 import com.jmzd.ghazal.weatherappmvvm.utils.network.NetworkRequest
+import com.jmzd.ghazal.weatherappmvvm.utils.setupRecyclerview
 import com.jmzd.ghazal.weatherappmvvm.utils.showSnackBar
 import com.jmzd.ghazal.weatherappmvvm.viewmodel.InfoViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class InfoFragment : BaseBottomSheetFragment<FragmentInfoBinding>() {
@@ -37,6 +40,10 @@ class InfoFragment : BaseBottomSheetFragment<FragmentInfoBinding>() {
 
     //args
     private val args by navArgs<InfoFragmentArgs>()
+
+    //adapter
+    @Inject
+    lateinit var pollutionAdapter : PollutionAdapter
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -130,7 +137,7 @@ class InfoFragment : BaseBottomSheetFragment<FragmentInfoBinding>() {
                                                 }
                                             }
                                             //Pollution
-//                                            initRecyclerView(fillPollutionData(myData.components))
+                                            initRecyclerView(fillPollutionData(myData.components))
                                         }
                                     }
                                 }
@@ -189,5 +196,10 @@ class InfoFragment : BaseBottomSheetFragment<FragmentInfoBinding>() {
         return list
     }
 
+
+    private fun initRecyclerView(list: List<PollutionModel>) {
+        pollutionAdapter.setData(list)
+        binding.pollutionLay.pollutionList.setupRecyclerview(LinearLayoutManager(requireContext()), pollutionAdapter)
+    }
 
 }
