@@ -9,6 +9,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.navArgs
 import com.jmzd.ghazal.weatherappmvvm.R
+import com.jmzd.ghazal.weatherappmvvm.data.model.info.ResponsePollution
 import com.jmzd.ghazal.weatherappmvvm.databinding.FragmentInfoBinding
 import com.jmzd.ghazal.weatherappmvvm.utils.BASE_URL_IMAGE
 import com.jmzd.ghazal.weatherappmvvm.utils.PNG_IMAGE
@@ -86,6 +87,7 @@ class InfoFragment : BaseBottomSheetFragment<FragmentInfoBinding>() {
         loadPollutionData()
     }
 
+    //--- observers ---//
     private fun loadPollutionData() {
         binding.apply {
             viewModel.pollutionLiveData.observe(viewLifecycleOwner) { response ->
@@ -142,6 +144,39 @@ class InfoFragment : BaseBottomSheetFragment<FragmentInfoBinding>() {
             }
         }
     }
+
+    //--- methods ---//
+    private fun pollutionColors(data: ResponsePollution.Data.Main): Int {
+        return when (data.aqi) {
+            1 -> R.color.green
+            2 -> R.color.yellow
+            3 -> R.color.orange
+            4 -> R.color.red
+            5 -> R.color.purple
+            else -> 0
+        }
+    }
+
+    private fun pollutionIcon(data: ResponsePollution.Data.Main): Int {
+        return when (data.aqi) {
+            1 -> R.drawable.face_smile_hearts
+            2, 3 -> R.drawable.face_clouds
+            4, 5 -> R.drawable.face_mask
+            else -> 0
+        }
+    }
+
+    private fun pollutionMessage(data: ResponsePollution.Data.Main): String {
+        return when (data.aqi) {
+            1 -> getString(R.string.messageAQI1)
+            2 -> getString(R.string.messageAQI2)
+            3, 4 -> getString(R.string.messageAQI3_4)
+            5 -> getString(R.string.messageAQI5)
+            else -> ""
+        }
+    }
+
+
 
 
 }
