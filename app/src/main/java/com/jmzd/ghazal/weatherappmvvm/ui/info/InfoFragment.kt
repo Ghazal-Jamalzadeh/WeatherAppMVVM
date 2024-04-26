@@ -1,6 +1,7 @@
 package com.jmzd.ghazal.weatherappmvvm.ui.info
 
 import android.content.res.ColorStateList
+import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -102,34 +103,34 @@ class InfoFragment : BaseBottomSheetFragment<FragmentInfoBinding>() {
                             data.list?.let { list ->
                                 if (list.isNotEmpty()) {
                                     list[0].let { myData ->
-//                                        pollutionLay.apply {
-//                                            //Image
-//                                            pollutionIconImg.apply {
-//                                                setImageResource(pollutionIcon(myData.main))
-//                                                //Tint
-//                                                imageTintList = ColorStateList.valueOf(
-//                                                    ContextCompat.getColor(requireContext(), pollutionColors(myData.main))
-//                                                )
-//                                            }
-//                                            //Info
-//                                            pollutionInfoTxt.apply {
-//                                                text = pollutionMessage(myData.main)
-//                                                setTextColor(
-//                                                    ContextCompat.getColor(requireContext(), pollutionColors(myData.main))
-//                                                )
-//                                            }
-//                                            //Shadow
-//                                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
-//                                                pollutionCard.apply {
-//                                                    outlineAmbientShadowColor =
-//                                                        ContextCompat.getColor(requireContext(), pollutionColors(myData.main))
-//                                                    outlineSpotShadowColor =
-//                                                        ContextCompat.getColor(requireContext(), pollutionColors(myData.main))
-//                                                }
-//                                            }
-//                                            //Pollution
+                                        pollutionLay.apply {
+                                            //Image
+                                            pollutionIconImg.apply {
+                                                setImageResource(pollutionIcon(myData.main))
+                                                //Tint
+                                                imageTintList = ColorStateList.valueOf(
+                                                    ContextCompat.getColor(requireContext(), pollutionColors(myData.main))
+                                                )
+                                            }
+                                            //Info
+                                            pollutionInfoTxt.apply {
+                                                text = pollutionMessage(myData.main)
+                                                setTextColor(
+                                                    ContextCompat.getColor(requireContext(), pollutionColors(myData.main))
+                                                )
+                                            }
+                                            //Shadow
+                                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+                                                pollutionCard.apply {
+                                                    outlineAmbientShadowColor =
+                                                        ContextCompat.getColor(requireContext(), pollutionColors(myData.main))
+                                                    outlineSpotShadowColor =
+                                                        ContextCompat.getColor(requireContext(), pollutionColors(myData.main))
+                                                }
+                                            }
+                                            //Pollution
 //                                            initRecyclerView(fillPollutionData(myData.components))
-//                                        }
+                                        }
                                     }
                                 }
                             }
